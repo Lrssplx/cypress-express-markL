@@ -1,21 +1,15 @@
- 
-
-
 describe('tasks', () => {
+  let testData;
 
+  before(() => {
+    cy.fixture('tasks').then((t) => {
+      testData = t;
+    });
+  });
 
-    let testData;
-
-    before(()=>{
-        cy.fixture('tasks').then(t =>{
-            testData = t
-        })
-
-    })
-
-    beforeEach(()=>{
-        cy.viewport(1920, 1080)
-    })
+  beforeEach(() => {
+    cy.viewport(1920, 1080);
+  });
   context('cadastro', () => {
     //suite de teste
     it('deve cadastrar nova task', () => {
@@ -33,7 +27,7 @@ describe('tasks', () => {
     });
 
     it('não deve permitir task duplicada', () => {
-      const task = testData.dup
+      const task = testData.dup;
       //Dado que
       cy.deletetask(task.name);
 
